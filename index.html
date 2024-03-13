@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for loop</title>
+</head> 
+<body>
+    <div>
+        <label for="range">password range</label> <br>
+        <input type="range" name="range" id="range" min="3" max="14" step="1">
+        <span></span>
+    </div>
+    <div>
+        <input type="checkbox" name="special" id="special">
+        <label for="special">include special characters</label>
+    </div>
+    <div>
+        <input type="checkbox" name="numbers" id="numbers">
+        <label for="numbers">include numbers</label>
+    </div>
+    <div>
+        <input type="checkbox" name="upperCase" id="upperCase">
+        <label for="upperCase">include upperCase</label>
+  </div>
+    <p></p>
+        
+</body>
+<script>
+    const inputs = document.querySelectorAll('input')
+    const span = document.querySelector('span')
+    const para = document.querySelector('p')
+
+    function generate(){
+        const arr = []
+        let characters = 'asdfghjkzxcvbnmwertyuiop'
+        const special = '@#$%&*()"+<>'
+        const numbers = '097654321'
+        const upperCase = 'WERTYUIOPASDFGJKZXCVB'
+        span.textContent = inputs[0].value + 'characters'
+
+        for(let x = 0; x < inputs[0].value; x++){
+            if(inputs[1].checked){
+                characters += special
+            }
+            if(inputs[2].checked){
+                characters += numbers
+            }
+            if(inputs[3].checked){
+                characters += upperCase
+            }
+            arr.push(characters[Math.floor(Math.random()*characters.length)])
+        }
+        para.textContent = arr.join('')
+    }
+
+    inputs[0].addEventListener('input',generate)
+</script>
+</html>
